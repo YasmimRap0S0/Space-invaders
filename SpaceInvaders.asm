@@ -24,9 +24,9 @@ start:		bne $0, $0, fim
 		addi $12, $12, 4
 continuar:		nop
 		
-		lui $25, 0xffff			#Reg $25 guarda meu keyboard
-		lw  $13, 4($25)			#Valor guardado no reg $13. 
-		addi $15, $0, 's'			#'S' será responsável por iniciar a minha cronometragem 
+		lui $25, 0xffff				#Reg $25 guarda meu keyboard
+		lw  $13, 4($25)				#Valor guardado no reg $13. 
+		addi $15, $0, 's'			#'S' seria responsável por iniciar a minha cronometragem(não desenvolvido)
 		beq $13, $15, iniciarContagem		
 		addi $15, $0, 'a'			#'A' responsável por mover para a direita
 		beq $13, $15, esquerda
@@ -49,14 +49,14 @@ iniciarContagem:
 		jal perdeu
 		
 esquerda:		lui $9, 0x1001
-		add $9, $9, $11			#Pixel da parte de cima da nave
+		add $9, $9, $11				#Pixel da parte de cima da nave
 		addi $19, $0, 0x000000				
        		sw $19, 0($9) 
 		addi $9, $9, 508 			#primeiro - LINHA 2				
        		sw $19,0 ($9)  
 		addi $9, $9, 4							
        		sw $19,0 ($9)   
-		addi $9, $9, 4			#LINHA 2			
+		addi $9, $9, 4				#LINHA 2			
        		sw $19, 0($9)			  
 		addi $9, $9, 496 			#primeiro - LINHA 3			
        		sw $19, 0($9)			
@@ -70,7 +70,7 @@ esquerda:		lui $9, 0x1001
        		sw $19, 0($9)			  
 		addi $9, $9, 4					
        		sw $19, 0($9)			  
-		addi $9, $9, 4			#LINHA 3			
+		addi $9, $9, 4				#LINHA 3			
        		sw $19, 0($9)			 
 		addi $9, $9, 488 			#primeiro - LINHA 4			
        		sw $19, 0($9)				  
@@ -84,7 +84,7 @@ esquerda:		lui $9, 0x1001
        		sw $19, 0($9)			 
 		addi $9, $9, 4							
        		sw $19, 0($9)					
-		addi $9, $9, 4			#LINHA 4					
+		addi $9, $9, 4				#LINHA 4					
        		sw $19, 0($9)					 
 		addi $9, $9, 488 			#primeiro - LINHA 5					
        		sw $19, 0($9)			       		  
@@ -98,7 +98,7 @@ esquerda:		lui $9, 0x1001
        		sw $19, 0($9)				 
 		addi $9, $9, 4						
        		sw $19, 0($9)			      		
-		addi $9, $9, 4			#LINHA 5				
+		addi $9, $9, 4				#LINHA 5				
        		sw $19, 0($9)			
 		addi $11, $11, -4	
 		addi $17, $11, 0			#Inserir o valor de $11 em reg $17 para pegar a posiçăo da nave
@@ -113,7 +113,7 @@ direita:		lui $9, 0x1001			#Esse rótulo primeiro irá apagar os meus pixels que
        		sw $19,0 ($9)  
 		addi $9, $9, 4							
        		sw $19,0 ($9)   
-		addi $9, $9, 4			#LINHA 2				
+		addi $9, $9, 4				#LINHA 2				
        		sw $19, 0($9)			  
 		addi $9, $9, 496 			#primeiro - LINHA 3			
        		sw $19, 0($9)			
@@ -127,9 +127,9 @@ direita:		lui $9, 0x1001			#Esse rótulo primeiro irá apagar os meus pixels que
        		sw $19, 0($9)			  
 		addi $9, $9, 4					
        		sw $19, 0($9)			  
-		addi $9, $9, 4			#LINHA 3			
+		addi $9, $9, 4				#LINHA 3			
        		sw $19, 0($9)			 
-		addi $9, $9, 488 		#primeiro - LINHA 4			
+		addi $9, $9, 488 			#primeiro - LINHA 4			
        		sw $19, 0($9)			
 		addi $9, $9, 4					
        		sw $19, 0($9)			      		  
@@ -141,9 +141,9 @@ direita:		lui $9, 0x1001			#Esse rótulo primeiro irá apagar os meus pixels que
        		sw $19, 0($9)			     		 
 		addi $9, $9, 4							
        		sw $19, 0($9)					
-		addi $9, $9, 4		#LINHA 4					
+		addi $9, $9, 4				#LINHA 4					
        		sw $19, 0($9)				 
-		addi $9, $9, 488 		#primeiro - LINHA 5					
+		addi $9, $9, 488 			#primeiro - LINHA 5					
        		sw $19, 0($9)			     		  
 		addi $9, $9, 4							
        		sw $19, 0($9)			       		 
@@ -155,7 +155,7 @@ direita:		lui $9, 0x1001			#Esse rótulo primeiro irá apagar os meus pixels que
        		sw $19, 0($9)			       		 
 		addi $9, $9, 4							
        		sw $19, 0($9)			
-		addi $9, $9, 4		#LINHA 5			
+		addi $9, $9, 4				#LINHA 5			
        		sw $19, 0($9)			
 		addi $11, $11, 4
 		addi $17, $11, 0
@@ -163,15 +163,16 @@ direita:		lui $9, 0x1001			#Esse rótulo primeiro irá apagar os meus pixels que
 		
 atirar:		
 				
-		.include "Tiro.asm"
+		.include "Tiro.asm"			#Extrai meu arquivo Tiro.asm
 		
 		addi $17, $17, -1024	
 					
 		j continuar2
 		
 			
-perdeu:								
+perdeu:							#Label não desenvolvida						
 
 		jr $31
-fim:	 addi $2, $0, 10
-      	 syscall
+
+fim:	 	addi $2, $0, 10
+      	 	syscall
