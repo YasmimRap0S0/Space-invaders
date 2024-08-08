@@ -44,7 +44,7 @@ alien_posiçăo:	addi $12, $0, 5180			#Reiniciando a posiçăo do meu alien
 		addi $14, $0,  5580	
 		j continuar
 
-iniciarContagem:	
+iniciarContagem:					#Ação não desenvolvida
 		.include "Barra_Laranja.asm"
 		jal perdeu
 		
